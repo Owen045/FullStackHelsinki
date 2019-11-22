@@ -1,7 +1,8 @@
 ////////////////////////// Javascript Notes ///////////////////////
 
+// tutorial guide - https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript
 
-// •	Single thread language
+// • Single thread language
 //•	Call stack
 //•	Asynchronous Callbacks
 //•	Web APIS – DOM etc
@@ -13,6 +14,8 @@
 //•	Node.js is a runtime environment based on chrome V8 JS engine.
 
 //•	Run command for node.js is node <filename>.js
+
+// Datatypes: Boolean, Null, Undefined, Number, String, Symbol, and Object.
 
 // Variables
 
@@ -117,3 +120,109 @@ object1['secret number'] = 12341
 // Objects can also be defined using so-called constructor functions, which results in a mechanism reminiscent of many other programming languages', e.g. Java's classes. 
 // Despite this similarity Javascript does not have classes in the same sense as object-oriented programming languages. 
 // There has been, however, an addition of the class syntax starting from version ES6, which in some cases helps structure object-oriented classes.
+
+
+// Functions
+
+const sum = (p1, p2) => {
+    console.log(p1)
+    console.log(p2)
+    return p1 + p2
+}
+
+const result = sum(1, 5)
+console.log(result)
+
+// single parameter or single expression
+
+const square = p => {
+    console.log(p)
+    return p * p
+  }
+
+const square = p => p * p
+
+// function expression - different way of declaring a function
+
+const average = function(a, b) {
+    return (a + b) / 2
+  }
+  
+  const result = average(2, 5)
+  // result is now 3.5
+
+
+// Object methods and "this"
+
+// you can assign methods to an object
+
+const arto = {
+    name: 'Arto Hellas',
+    age: 35,
+    education: 'PhD',
+    greet: function() {
+      console.log('hello, my name is', this.name) // this keyword parallels self in python
+    },
+  }
+
+// methods can be retrospectively applied to objects
+
+const arto = {
+    name: 'Arto Hellas',
+    age: 35,
+    education: 'PhD',
+    greet: function() {
+      console.log('hello, my name is', this.name)
+    },
+    doAddition: function(a, b) {
+      console.log(a + b)
+    },
+  }
+  
+  arto.doAddition(1, 4)        // 5 is printed
+  
+  const referenceToAddition = arto.doAddition
+  referenceToAddition(10, 15)   // 25 is printed
+
+  // assign method reference to a variable
+  // will not work with .greet function as reference to 'this' is not stored as the variable function becomes a global object
+
+  // setTimeout method
+
+const arto = {
+name: 'Arto Hellas',
+greet: function() {
+    console.log('hello, my name is', this.name)
+},
+}
+  
+setTimeout(arto.greet, 1000) // prints undefined this.name
+
+// bind method
+
+setTimeout(arto.greet.bind(arto), 1000) // this binds the method to the object arto independne tof how method called
+
+
+// Classes
+
+// do not exist in JS but can be simulated
+
+
+class Person {
+    constructor(name, age) {
+        this.name = name
+        this.age = age
+    }
+    greet () {
+        console.log('hell, my name is', this.name)
+    }
+}
+
+const adam = new Person('Adam Ondra', 35)
+adam.greet()
+
+const janja = new Person('Janja Garnbret', 22)
+janja.greet()
+
+
+
