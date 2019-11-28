@@ -18,6 +18,11 @@ const Display = (props) => (
     </div>
 )
 
+const Statistics = (props) => (
+    <div>
+        <p>{props.text} {props.value} {props.symbol}</p>
+    </div>
+)
 
 
 const App = () => {
@@ -65,8 +70,8 @@ const App = () => {
         <Display value={neutral} text={'neutral'}/>
         <Display value={bad} text={'bad'}/>
         <Display value={all} text={'all'} />
-        <Display value={avg} text={'average'} />
-        <Display value={pos} text={'positive'} symbol={'%'} />
+        <Statistics value={avg} text={'average'} />
+        <Statistics value={pos} text={'positive'} symbol={'%'} />
     </div>
   )
 }
