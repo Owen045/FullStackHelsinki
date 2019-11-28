@@ -18,11 +18,29 @@ const Display = (props) => (
     </div>
 )
 
-const Statistics = (props) => (
-    <div>
-        <p>{props.text} {props.value} {props.symbol}</p>
-    </div>
-)
+const Statistics = (props) => {
+    if (props.avgvalue === 0) {
+
+     return   (
+         <div>
+             <p>No feedback given</p>
+         </div>
+            
+        )
+    }
+    return (
+            <div>
+
+                <Display value={props.good} text={'good'}/>
+                <Display value={props.neutral} text={'neutral'}/>
+                <Display value={props.bad} text={'bad'}/>
+                <Display value={props.all} text={'all'} />
+
+                <p>{props.avgtext} {props.avgvalue} {props.avgsymbol}</p>
+                <p>{props.postext} {props.posvalue} {props.ppossymbol}</p>
+            </div>
+    )
+}
 
 
 const App = () => {
@@ -66,12 +84,8 @@ const App = () => {
     
 
         <Header title={'statistics'} />
-        <Display value={good} text={'good'}/>
-        <Display value={neutral} text={'neutral'}/>
-        <Display value={bad} text={'bad'}/>
-        <Display value={all} text={'all'} />
-        <Statistics value={avg} text={'average'} />
-        <Statistics value={pos} text={'positive'} symbol={'%'} />
+        <Statistics good={good} bad={bad} neutral={neutral} all={all} avgvalue={avg} avgtext={'average'}
+        posvalue={pos} postext={'positive'} symbol={'%'}/>
     </div>
   )
 }
