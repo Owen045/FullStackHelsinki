@@ -13,13 +13,14 @@ const Button = ({onClick, text}) => (
 )
 
 const Statistic = (props) => (
-    <div>
-        <p>{props.text} {props.value} {props.symbol}</p>
-    </div>
+    <tr>
+        <td>{props.text}</td> 
+        <td>{props.value} {props.symbol} </td> 
+    </tr>
 )
 
 const Statistics = (props) => {
-    if (props.avgvalue === 0) {
+    if (props.all === 0) {
 
      return   (
          <div>
@@ -31,13 +32,18 @@ const Statistics = (props) => {
     return (
             <div>
 
-                <Statistic value={props.good} text={'good'}/>
-                <Statistic value={props.neutral} text={'neutral'}/>
-                <Statistic value={props.bad} text={'bad'}/>
-                <Statistic value={props.all} text={'all'} />
+                <table>
+                    <tbody>
+                        <Statistic value={props.good} text={'good'}/>
+                        <Statistic value={props.neutral} text={'neutral'}/>
+                        <Statistic value={props.bad} text={'bad'}/>
+                        <Statistic value={props.all} text={'all'} />
 
-                <p>{props.avgtext} {props.avgvalue} {props.avgsymbol}</p>
-                <p>{props.postext} {props.posvalue} {props.ppossymbol}</p>
+                        <Statistic value={props.avgvalue.toFixed(2)} text={props.avgtext} symbol={props.avgsymbol} />
+                        <Statistic value={props.posvalue.toFixed(2)} text={props.postext} symbol={props.symbol} />
+                    </tbody>
+                </table>
+            
             </div>
     )
 }
