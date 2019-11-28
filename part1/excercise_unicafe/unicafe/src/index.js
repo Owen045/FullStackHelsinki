@@ -12,7 +12,7 @@ const Button = ({onClick, text}) => (
     </button>
 )
 
-const Display = (props) => (
+const Statistic = (props) => (
     <div>
         <p>{props.text} {props.value} {props.symbol}</p>
     </div>
@@ -31,10 +31,10 @@ const Statistics = (props) => {
     return (
             <div>
 
-                <Display value={props.good} text={'good'}/>
-                <Display value={props.neutral} text={'neutral'}/>
-                <Display value={props.bad} text={'bad'}/>
-                <Display value={props.all} text={'all'} />
+                <Statistic value={props.good} text={'good'}/>
+                <Statistic value={props.neutral} text={'neutral'}/>
+                <Statistic value={props.bad} text={'bad'}/>
+                <Statistic value={props.all} text={'all'} />
 
                 <p>{props.avgtext} {props.avgvalue} {props.avgsymbol}</p>
                 <p>{props.postext} {props.posvalue} {props.ppossymbol}</p>
