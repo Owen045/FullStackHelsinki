@@ -10,15 +10,28 @@ const Button = (props) => (
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
+  const [votes, setVote] = useState(Array.apply(null, new Array(6)).map(Number.prototype.valueOf,0))  
 
     const genRand = () => {
         setSelected(Math.floor(Math.random() * (+5 - +0)) + +0)
     }
 
+    const vote = () => {
+      console.log(votes)
+      console.log(votes[selected])
+      const copy = [...votes]
+      copy[selected] += 1
+      setVote(copy)
+      
+    }
+
   return (
     <div>
       {props.anecdotes[selected]}
+      <p>has {votes[selected]} votes</p>
+      <Button onClick={vote} text={'vote'}/>
       <Button onClick={genRand} text={'next anecdote'}/>
+      
     </div>
   )
 }
@@ -31,6 +44,9 @@ const anecdotes = [
   'Premature optimization is the root of all evil.',
   'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
 ]
+
+
+
 
 ReactDOM.render(
   <App anecdotes={anecdotes} />,
