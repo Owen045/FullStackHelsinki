@@ -8,30 +8,51 @@ const Button = (props) => (
     </div>
 )
 
+const MostVotes = (props) => {
+  if (props.maxVotes === null) {
+
+    return (
+      <p>No votes</p>
+    )
+  }
+  return (
+    <p>{props.anecdotes[props.maxVotes]}</p>
+  )
+}
+
 const App = (props) => {
   const [selected, setSelected] = useState(0)
-  const [votes, setVote] = useState(Array.apply(null, new Array(6)).map(Number.prototype.valueOf,0))  
+  const [votes, setVote] = useState(Array.apply(null, new Array(6)).map(Number.prototype.valueOf,0))
+  const [maxVotes, setMax] = useState(null)  
 
     const genRand = () => {
         setSelected(Math.floor(Math.random() * (+5 - +0)) + +0)
     }
 
     const vote = () => {
-      console.log(votes)
-      console.log(votes[selected])
       const copy = [...votes]
       copy[selected] += 1
       setVote(copy)
       
+
+      const max = Math.max(...copy)
+      const idx = copy.indexOf(max)
+      setMax(idx)
+
     }
+
+
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {props.anecdotes[selected]}
       <p>has {votes[selected]} votes</p>
       <Button onClick={vote} text={'vote'}/>
       <Button onClick={genRand} text={'next anecdote'}/>
-      
+
+      <h2>Anecdote withe most votes</h2>
+      <MostVotes maxVotes={maxVotes} anecdotes={props.anecdotes}/>
     </div>
   )
 }
